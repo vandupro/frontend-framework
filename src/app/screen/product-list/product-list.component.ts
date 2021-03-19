@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { HeroData } from '../../mock-data/heros';
+import { HEROES } from '../../mock-data/HEROES';
+import { Hero } from '../../models/Hero';
 @Component({
   selector: 'app-product-list',
   templateUrl: './product-list.component.html',
@@ -8,13 +9,13 @@ import { HeroData } from '../../mock-data/heros';
 export class ProductListComponent implements OnInit {
 
   constructor() { }
-  heroes:any = [];
+  heroes:Array<Hero> = [];
   ngOnInit(): void {
-  	this.heroes = HeroData;
+  	this.heroes = HEROES;
   }
 
-  removeHero(hero:any){
-  	this.heroes = this.heroes.filter((x: any) => x.id != hero);
+  removeHero(hero:Hero){
+  	this.heroes = this.heroes.filter((x: Hero) => x != hero);
   }
 
   submitForm(event:any){

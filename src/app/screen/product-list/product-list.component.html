@@ -3,8 +3,10 @@
 	<div class="row">
 		<div class="col-sm-4" *ngFor="let item of heroes">
 			<p><strong>{{ item.name }}</strong></p>
+			<p *ngIf="item.skills != undefined && item.skills.length > 0">skill: </p>
+			<span *ngFor="let skill of item.skills">{{skill.name}}</span>
 			<img style="width: 300px" src="{{item.img}}" alt="">
-			<button (click) = "removeHero(item.id)">remove</button>
+			<button class="btn btn-danger" (click) = "removeHero(item)">remove</button>
 		</div>
 	</div>
 	<div class="row mt-3">
@@ -23,3 +25,5 @@
 		</form>
 	</div>
 </div>
+<app-monster-list>
+</app-monster-list>
