@@ -1,0 +1,25 @@
+<div class="container">
+	<h2>Product list</h2>
+	<div class="row">
+		<div class="col-sm-4" *ngFor="let item of heroes">
+			<p><strong>{{ item.name }}</strong></p>
+			<img style="width: 300px" src="{{item.img}}" alt="">
+			<button (click) = "removeHero(item.id)">remove</button>
+		</div>
+	</div>
+	<div class="row mt-3">
+		<form (submit)= "submitForm($event)" action="">
+			<div class="form-group">
+				<label for="">id</label>
+				<input class="form-control" type="text" name="id">
+			</div>
+			<div class="form-group">
+				<label for="">name</label>
+				<input class="form-control" type="text" name="name-product">
+			</div>
+			<div>
+				<button type="submit">Submit</button>
+			</div>
+		</form>
+	</div>
+</div>
