@@ -1,29 +1,71 @@
-<div class="container">
-	<h2>Product list</h2>
-	<div class="row">
+	<!-- <div class="row mt-3">
+		<form (submit)= "submitForm($event)" action="">
+			<div class="form-group">
+				<label for="">id</label>
+				<input class="form-control"  
+				(change)="updateFormObjectAttribute('id', $event)"
+				[value]="formObject.id" type="text" name="id">
+			</div>
+			<div class="form-group">
+				<label for="">name</label>
+				<input class="form-control"
+				(change)="updateFormObjectAttribute('name', $event)"
+				[value]="formObject.name" type="text" name="name">
+			</div>
+			<div class="form-group" *ngFor="let skill of skills">
+				<input type="checkbox" 
+				(click)="updateFormObjectSkill(skill, $event)"
+				[checked]="checkSkill(skill.id)" id="skill-{{skill.id}}"
+				[value]="skill.id"
+				name="skills[]"
+				>
+				<label for="" >
+					{{skill.name}}
+				</label>
+			</div>
+			<div>
+				<button type="submit">Submit</button>
+			</div>
+		</form>
+	</div> -->
+	<!-- <div class="row">
 		<div class="col-sm-4" *ngFor="let item of heroes">
 			<p><strong>{{ item.name }}</strong></p>
 			<p *ngIf="item.skills != undefined && item.skills.length > 0">skill: </p>
 			<span *ngFor="let skill of item.skills">{{skill.name}}</span>
 			<img style="width: 300px" src="{{item.img}}" alt="">
 			<button class="btn btn-danger" (click) = "removeHero(item)">remove</button>
+			<button class="btn btn-warning" (click) = "updateHero(item)">Update</button>
 		</div>
-	</div>
-	<div class="row mt-3">
-		<form (submit)= "submitForm($event)" action="">
-			<div class="form-group">
-				<label for="">id</label>
-				<input class="form-control" type="text" name="id">
-			</div>
-			<div class="form-group">
-				<label for="">name</label>
-				<input class="form-control" type="text" name="name-product">
-			</div>
-			<div>
-				<button type="submit">Submit</button>
-			</div>
-		</form>
-	</div>
+	</div> -->
+<div class="container">
+	<h2>Product list</h2>
+	<a routerLink="/product/add" class="btn btn-primary mb-3">Add product</a>
+	<table class="table table-striped">
+		<thead>
+			<tr>
+				<th>Name</th>
+				<th>Skill</th>
+				<th>Image</th>
+				<th>Action</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr *ngFor="let item of heroes">
+				<td>{{ item.name }}</td>
+				<td>
+					<span *ngFor="let skill of item.skills">{{ skill.name }}/</span>
+				</td>
+				<td>
+					<img height="50px" src="{{ item.img }}" alt="">
+				</td>
+				<td>
+					<button class="btn btn-danger" (click) = "removeHero(item)">remove</button>
+					<!-- <button class="btn btn-warning" (click) = "updateHero(item)">Update</button> -->
+				</td>
+			</tr>
+			
+		</tbody>
+	</table>
 </div>
-<app-monster-list>
-</app-monster-list>
+
