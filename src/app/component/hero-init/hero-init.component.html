@@ -1,0 +1,6 @@
+<p><strong>{{ heroData.name }}</strong></p>
+<p *ngIf="heroData.skills != undefined && heroData.skills.length > 0">skill: </p>
+<span *ngFor="let skill of heroData.skills">{{skill.name}}</span>
+<img style="width: 300px" src="{{heroData.img}}" alt=""><pre></pre>
+<button class="btn btn-danger" (click) = "removeHero()">remove</button>
+<button class="btn btn-warning" (click) = "updateHero()">update</button>

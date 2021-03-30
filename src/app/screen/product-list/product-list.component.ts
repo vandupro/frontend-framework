@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HEROES } from '../../mock-data/HEROES';
 import { Hero } from '../../models/Hero';
+import { FormControl } from '@angular/forms';
 @Component({
   selector: 'app-product-list',
   templateUrl: './product-list.component.html',
@@ -10,6 +11,17 @@ export class ProductListComponent implements OnInit {
 
   constructor() { }
   heroes:Array<Hero> = [];
+  formObject: Hero = {
+    id: 0,
+    name: "",
+    img: "",
+    skills: []
+  }
+
+  fullName =  new FormControl('');
+  money = 12345678;
+  currentDate: Date = new Date();
+  gender = 1;
   ngOnInit(): void {
   	this.heroes = HEROES;
   }
@@ -29,6 +41,15 @@ export class ProductListComponent implements OnInit {
   		let obj = {id: Number(id), name: nameProduct.toString(), img: img};
   		this.heroes.push(obj);
   	}
+  }
+
+  parentRemoveHero(data: Hero){
+    this.heroes = this.heroes.filter(item => item.id!= data.id)
+  }
+
+  parentUpdateHero(data: Hero){
+    let updateHero = {...data};
+    this.formObject = updateHero
   }
 
 }
