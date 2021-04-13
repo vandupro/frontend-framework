@@ -1,58 +1,100 @@
 {
-    "categories":[
-        {
-            "id": 1,
-            "name": "Comedy"
-        },
-        {
-            "id": 2,
-            "name": "Chuyển Sinh"
-        },
-        {
-            "id": 3,
-            "name": "Cooking"
-        }
-    ],
-    "comics": [
-        {
-            "id": 1,
-            "name": "Thực Linh Vương",
-            "image": "http://st.imageinstant.net/data/comics/232/thuc-linh-vuong.jpg",
-            "categoryId": 3,
-            "status": "Đang tiến hành",
-            "views": 356335
-        },
-        {
-            "id": 2,
-            "name": "ĐẦU BẾP TRỨ DANH",
-            "image": "http://st.imageinstant.net/data/comics/123/dau-bep-tru-danh.jpg",
-            "categoryId": 3,
-            "status": "Đang tiến hành",
-            "views": 1426604
-        },
-        {
-            "id": 3,
-            "name": "CUỘC CHIẾN ẨM THỰC",
-            "image": "http://st.nhattruyen.com/data/comics/240/cuoc-chien-am-thuc.jpg",
-            "categoryId": 3,
-            "status": "Hoàn thành",
-            "views": 20895939
-        },
-        {
-            "id": 4,
-            "name": "TA LUYỆN KHÍ BA NGÀN NĂM",
-            "image": "http://st.nhattruyen.com/data/comics/155/ta-luyen-khi-ba-ngan-nam.png",
-            "categoryId": 1,
-            "status": "Đang tiến hành",
-            "views": 20301229
-        },
-        {
-            "id": 5,
-            "name": "TẬN KIỂN MINH THẦN",
-            "image": "http://st.nhattruyen.com/data/comics/58/tan-kien-minh-than.jpg",
-            "categoryId": 1,
-            "status": "Đang tiến hành",
-            "views": 84624
-        }
-    ]
+  "categories": [
+    {
+      "id": 1,
+      "name": "Truyện Hài"
+    },
+    {
+      "id": 2,
+      "name": "Chuyển Sinh"
+    },
+    {
+      "id": 3,
+      "name": "Cooking 23"
+    },
+    {
+      "id": 4,
+      "name": "Kiếm hiệp 2"
+    },
+    {
+      "name": "Tâm lý",
+      "id": 5
+    },
+    {
+      "name": "Tiên hiệp",
+      "id": 6
+    },
+    {
+      "name": "du tiên sinh pro",
+      "id": 7
+    },
+    {
+      "name": "Quan trường",
+      "id": 8
+    }
+  ],
+  "authors": [
+    {
+      "id": 1,
+      "name": "Thanh tử"
+    },
+    {
+      "id": 2,
+      "name": "Tiêu dao tiếu"
+    },
+    {
+      "id": 3,
+      "name": "Độc cô cầu bại"
+    },
+    {
+      "id": 4,
+      "name": "Bất tử nhân"
+    },
+    {
+      "id": 5,
+      "name": "Hương soái"
+    }
+  ],
+  "comics": [
+    {
+      "id": 1,
+      "name": "Thực Linh Vương",
+      "image": "http://st.imageinstant.net/data/comics/232/thuc-linh-vuong.jpg",
+      "categoryId": 3,
+      "status": "Đang tiến hành",
+      "views": 356335
+    },
+    {
+      "id": 2,
+      "name": "ĐẦU BẾP TRỨ DANH",
+      "image": "http://st.imageinstant.net/data/comics/123/dau-bep-tru-danh.jpg",
+      "categoryId": 3,
+      "status": "Đang tiến hành",
+      "views": 1426604
+    },
+    {
+      "id": 3,
+      "name": "CUỘC CHIẾN ẨM THỰC",
+      "image": "http://st.nhattruyen.com/data/comics/240/cuoc-chien-am-thuc.jpg",
+      "categoryId": 3,
+      "status": "Hoàn thành",
+      "views": 20895939
+    },
+    {
+      "id": 4,
+      "name": "TA LUYỆN KHÍ BA NGÀN NĂM",
+      "image": "http://st.nhattruyen.com/data/comics/155/ta-luyen-khi-ba-ngan-nam.png",
+      "categoryId": 1,
+      "status": "Đang tiến hành",
+      "views": 20301229
+    },
+    {
+      "id": 5,
+      "name": "TẬN KIỂN MINH THẦN",
+      "image": "http://st.nhattruyen.com/data/comics/58/tan-kien-minh-than.jpg",
+      "categoryId": 1,
+      "status": "Đang tiến hành",
+      "views": 84624
+    }
+  ]
 }

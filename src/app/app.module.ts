@@ -14,6 +14,13 @@ import { ClientLayoutComponent } from './screen/client-layout/client-layout.comp
 import { AdminLayoutComponent } from './screen/admin-layout/admin-layout.component';
 import { DashboardComponent } from './screen/admin/dashboard/dashboard.component';
 import { HttpClientModule } from '@angular/common/http';
+import { QtDanhmucComponent } from './screen/qt-danhmuc/qt-danhmuc.component';
+import { NewDanhmucComponent } from './screen/admin/new-danhmuc/new-danhmuc.component';
+import { UpdateDanhmucComponent } from './screen/admin/update-danhmuc/update-danhmuc.component';
+import { AngularFireModule } from '@angular/fire';
+import { AngularFireStorageModule } from '@angular/fire/storage';
+import { environment } from 'src/environments/environment';
+import { UploadFileComponent } from './screen/admin/upload-file/upload-file.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -27,12 +34,18 @@ import { HttpClientModule } from '@angular/common/http';
     ClientLayoutComponent,
     AdminLayoutComponent,
     DashboardComponent,
+    QtDanhmucComponent,
+    NewDanhmucComponent,
+    UpdateDanhmucComponent,
+    UploadFileComponent,
   ],
   imports: [
     HttpClientModule,
     BrowserModule,
     AppRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    AngularFireStorageModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig)
   ],
   providers: [],
   bootstrap: [AppComponent]
