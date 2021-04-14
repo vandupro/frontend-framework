@@ -3,9 +3,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { ProductListComponent } from './screen/product-list/product-list.component';
-import { ProductDetailComponent } from './screen/product-detail/product-detail.component';
-import { MonsterListComponent } from './screen/monster-list/monster-list.component';
 import { HeroInitComponent } from './component/hero-init/hero-init.component';
 import { GenderPipe } from './pipe/gender.pipe';
 import { HomeComponent } from './screen/home/home.component';
@@ -21,12 +18,16 @@ import { AngularFireModule } from '@angular/fire';
 import { AngularFireStorageModule } from '@angular/fire/storage';
 import { environment } from 'src/environments/environment';
 import { UploadFileComponent } from './screen/admin/upload-file/upload-file.component';
+import { QtTacgiaComponent } from './screen/admin/qt-tacgia/qt-tacgia.component';
+import { NewTacgiaComponent } from './screen/admin/new-tacgia/new-tacgia.component';
+import { UpdateTacgiaComponent } from './screen/admin/update-tacgia/update-tacgia.component';
+import { QtComicComponent } from './screen/admin/qt-comic/qt-comic.component';
+import { NewTruyentranhComponent } from './screen/admin/new-truyentranh/new-truyentranh.component';
+import { UpdateTruyentranhComponent } from './screen/admin/update-truyentranh/update-truyentranh.component';
+import { ComicDetailComponent } from './screen/comic-detail/comic-detail.component';
 @NgModule({
   declarations: [
     AppComponent,
-    ProductListComponent,
-    ProductDetailComponent,
-    MonsterListComponent,
     HeroInitComponent,
     GenderPipe,
     HomeComponent,
@@ -38,6 +39,13 @@ import { UploadFileComponent } from './screen/admin/upload-file/upload-file.comp
     NewDanhmucComponent,
     UpdateDanhmucComponent,
     UploadFileComponent,
+    QtTacgiaComponent,
+    NewTacgiaComponent,
+    UpdateTacgiaComponent,
+    QtComicComponent,
+    NewTruyentranhComponent,
+    UpdateTruyentranhComponent,
+    ComicDetailComponent,
   ],
   imports: [
     HttpClientModule,

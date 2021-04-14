@@ -13,16 +13,16 @@
         <th>Tên danh mục</th>
         <th>Số lượng truyện</th>
         <th>
-            <a class="btn btn-success" routerLink="/admin/danh-muc/tao-moi">Tạo mới</a>
+            <a class="btn btn-success" routerLink="/admin/tac-gia/tao-moi">Tạo mới</a>
         </th>
     </thead>
     <tbody>
-        <tr *ngFor="let item of dataOfCategory; index as i">
+        <tr *ngFor="let item of dataOfAuthor; index as i">
             <td>{{i+1}}</td>
             <td>{{item.name}}</td>
             <td>{{item.comics?.length}}</td>
             <td>
-                <a class="btn btn-warning" routerLink="/admin/danh-muc/update/{{item.id}}">Sửa</a>
+                <a class="btn btn-warning" routerLink="/admin/tac-gia/update/{{item.id}}">Sửa</a>
                 
                 <button (click)="delete(item.id)" class="btn btn-danger">Xóa</button>
             </td>

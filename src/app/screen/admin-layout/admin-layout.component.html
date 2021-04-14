@@ -8,16 +8,21 @@
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
               <li class="nav-item">
-                <a class="nav-link active" aria-current="page" routerLink="/admin/dashboard" href="javascript:;">Dashboard</a>
+                <a class="nav-link" routerLinkActive="active" aria-current="page" routerLink="/admin/dashboard" href="javascript:;">Dashboard</a>
               </li>
               
               <li class="nav-item ">
-                <a class="nav-link " routerLink="/admin/danh-muc" href="javascript:;" >
+                <a class="nav-link " routerLinkActive="active" routerLink="/admin/danh-muc" href="javascript:;" >
                   Quản lý danh mục
                 </a>
               </li>
               <li class="nav-item ">
-                <a class="nav-link " routerLink="/admin/truyen-tranh" href="javascript:;" >
+                <a class="nav-link " routerLinkActive="active" routerLink="/admin/tac-gia" href="javascript:;" >
+                  Quản lý tác giả
+                </a>
+              </li>
+              <li class="nav-item ">
+                <a class="nav-link " routerLinkActive="active" routerLink="/admin/truyen-tranh" href="javascript:;" >
                   Quản lý truyện tranh
                 </a>
               </li>
@@ -29,4 +34,7 @@
 </header>
 <main class="container">
     <router-outlet></router-outlet>
+    <div class="footer">
+      <h3>Bản quyền thuộc về dunvph10007@fpt.edu.vn</h3>
+    </div>
 </main>

@@ -11,6 +11,7 @@ import { Category } from 'src/app/models/category';
 export class UpdateDanhmucComponent implements OnInit {
   cateId: string = '';
   cate: Category = new Category(0, '');
+  dataEdit: any;
   constructor(
     private route: ActivatedRoute,
     private categoryService: CategoryService,
@@ -20,13 +21,12 @@ export class UpdateDanhmucComponent implements OnInit {
     this.route.params.subscribe(params => {
       this.cateId = params.id;
       this.categoryService.findById(this.cateId).subscribe(data => {
-        this.cate = data;
+        this.dataEdit = data.data;
         this.profileForm.setValue({
-          name: this.cate.name
+          name: this.dataEdit.name
         })
       })
     })
-    //console.log(this.cate)
   }
   profileForm = new FormGroup({
     name: new FormControl(this.cate.name, [
@@ -38,7 +38,7 @@ export class UpdateDanhmucComponent implements OnInit {
   onSubmit(){
     this.categoryService.update(this.profileForm.value, Number(this.cateId)).subscribe(data => {
       if(data != undefined){
-        this.router.navigate(['/admin/danh-muc'])
+        this.router.navigate(['/admin/danh-muc']);
       }
     })
   }

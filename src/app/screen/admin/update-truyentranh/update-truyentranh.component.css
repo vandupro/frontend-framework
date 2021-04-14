@@ -1,0 +1,15 @@
+h3 {
+    margin-top: 50px;
+}
+
+.picture {
+    width: 150px;
+    height: 200px;
+    margin-top: 15px;
+    border: 1px solid gray;
+    margin-bottom: 25px;
+}
+
+img{
+    width: 100%;
+}

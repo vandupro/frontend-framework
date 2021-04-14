@@ -1,0 +1,52 @@
+<h5>
+  <>Tên truyện: {{comic.name}}
+</h5>
+<div class="container">
+  <div class="image">
+    <img [src]="comic.image" alt="">
+  </div>
+  <div class="content">
+    <div class="card-body">
+      <p>
+        - Tác giả: <strong style="font-size: 12px">{{comic.name}}</strong>
+      </p>
+      <p>
+        - Trạng thái: <strong style="font-size: 12px">{{comic.status? 'Hoàn thành': 'Chưa hoàn thành'}}</strong>
+      </p>
+      <p>
+        - Tác giả: <strong style="font-size: 12px">{{comic.author.name}}</strong>
+      </p>
+      <p>
+        - Thể loại: <strong style="font-size: 12px">{{comic.category.name}}</strong>
+      </p>
+      <p>
+        - Tóm tắt: <strong style="font-size: 12px">{{comic.desc}}</strong>
+      </p>
+    </div>
+  </div>
+  <hr>
+  <div class="relate-comic">
+    <h3>
+      <>Truyện có liên quan({{comicRelated.length? comicRelated.length: 0}})
+    </h3>
+    <div class="row">
+      <div class="col-3" *ngFor="let item of comicRelated">
+        <div class="col-12">
+          <div class="card">
+            <img style=" height: 150px;" class="card-img-top" [src]="item.image">
+            <div class="card-body">
+              <h5 style="font-size: 14px" class="card-title">{{item.name}}</h5>
+              <p>
+                Trạng thái: <strong style="font-size: 12px">{{item.status? 'Hoàn thành': 'Chưa hoàn
+                  thành'}}</strong>
+              </p>
+              <p>
+                Thể loại: <strong style="font-size: 12px">{{category.name}}</strong>
+              </p>
+              <a routerLink="/detail/{{item.id}}" class="btn btn-primary">Chi tiết</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

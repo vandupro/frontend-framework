@@ -1,0 +1,90 @@
+<h3>Thêm mới truyện</h3>
+
+<div class="row">
+  <div class="col-md-12">
+    <form [formGroup]="profileForm" (ngSubmit)="onSubmit()" action="">
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="">Tên Truyện</label>
+            <input class="form-control" type="text" formControlName="name">
+          </div>
+          <div *ngIf="f.name.invalid && (f.name.dirty || f.name.touched)" class="alert alert-danger">
+
+            <div *ngIf="f.name.errors?.required">
+              Name is required.
+            </div>
+            <div *ngIf="f.name.errors?.minlength">
+              Name must be at least 4 characters long.
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="">Trạng thái</label>
+            <br>
+            <input type="radio"  formControlName="status" value="1">
+            Hoàn thành
+            <input class="ml-3" [checked]="true" type="radio" formControlName="status" value="0">
+            Chưa hoàn thành
+          </div>
+          <div class="form-group">
+            <label for="">Tên danh mục</label>
+            <select class="form-control" formControlName="cate_id">
+              <option *ngFor="let item of categorys" [ngValue]="item.id">{{ item.name }}</option>
+            </select>
+          </div>
+          <div *ngIf="f.cate_id.invalid && (f.cate_id.dirty || f.cate_id.touched)" class="alert alert-danger">
+
+            <div *ngIf="f.cate_id.errors?.required">
+              Name of category is required.
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="">Tên tác giả</label>
+            <select class="form-control" formControlName="author_id">
+              <option *ngFor="let item of authors" [ngValue]="item.id">{{ item.name }}</option>
+            </select>
+          </div>
+          <div *ngIf="f.author_id.invalid && (f.author_id.dirty || f.author_id.touched)" class="alert alert-danger">
+
+            <div *ngIf="f.author_id.errors?.required">
+              Author is required.
+            </div>
+
+          </div>
+          <div class="form-group">
+            <label for="">View</label>
+            <input class="form-control" type="number" min="0" formControlName="view">
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="">Hình ảnh</label>
+            <input class="form-control" type="file" (change)="uploadFile($event)" formControlName="image">
+          </div>
+          <div *ngIf="f.image.invalid && (f.image.dirty || f.image.touched)" class="alert alert-danger">
+
+            <div *ngIf="f.image.errors?.required">
+              Image is required.
+            </div>
+          </div>
+          <div class="picture">
+            <img [src]="imageUrl" alt="">
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="">Giới thiệu</label>
+        <textarea class="form-control" formControlName="desc" cols="30" rows="10"></textarea>
+      </div>
+      <div *ngIf="f.desc.invalid && (f.desc.dirty || f.desc.touched)" class="alert alert-danger">
+
+        <div *ngIf="f.desc.errors?.required">
+          Description is required.
+        </div>
+      </div>
+      <div class="text-center">
+        <button [disabled]="profileForm.invalid" class="btn btn-success" type="submit">Lưu</button>
+      </div>
+    </form>
+  </div>
+</div>

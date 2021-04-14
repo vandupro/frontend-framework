@@ -1,0 +1,23 @@
+.top {
+    background-color:cornsilk;
+}
+.footer{
+    height: 80px;
+    line-height: 80px;
+    background-color: crimson;
+    color: white;
+    text-align: center;
+    margin-top: 25px;
+}
+
+.bg-light{
+    background-color: darkcyan!important;
+}
+
+a {
+    color: white!important;
+}
+
+.nav-item::hover {
+    color: red!important;
+}

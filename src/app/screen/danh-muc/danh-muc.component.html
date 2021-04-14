@@ -1,4 +1,27 @@
-<p>{{cate.name}}</p>
-<div *ngFor="let item of cate.comics">
-    <p>{{item.name}}</p>
+<h3>DANH SÁCH TRUYỆN THỂ LOẠI: {{ category.name }}</h3>
+<div class="search form-group col-6">
+  <input class="form-control" type="text" placeholder="search">
+</div>
+<div class="row">
+  <div class="col-3" *ngFor="let item of comics">
+    <div class="col-12">
+      <div class="card">
+        <img style=" height: 150px;" class="card-img-top" [src]="item.image">
+        <div class="card-body">
+          <h5 style="font-size: 14px" class="card-title">{{item.name}}</h5>
+          <p>
+            Trạng thái: <strong style="font-size: 12px">{{item.status? 'Hoàn thành': 'Chưa hoàn
+              thành'}}</strong>
+          </p>
+          <p>
+            Thể loại: <strong style="font-size: 12px">{{category.name}}</strong>
+          </p>
+          <a routerLink="/detail/{{item.id}}" class="btn btn-primary">Chi tiết</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="message">
+    <h3>Thể loại này hiện chưa có truyện</h3>
+  </div>
 </div>

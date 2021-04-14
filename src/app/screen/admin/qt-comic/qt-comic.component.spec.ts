@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { MonsterListComponent } from './monster-list.component';
+import { QtComicComponent } from './qt-comic.component';
 
-describe('MonsterListComponent', () => {
-  let component: MonsterListComponent;
-  let fixture: ComponentFixture<MonsterListComponent>;
+describe('QtComicComponent', () => {
+  let component: QtComicComponent;
+  let fixture: ComponentFixture<QtComicComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ MonsterListComponent ]
+      declarations: [ QtComicComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(MonsterListComponent);
+    fixture = TestBed.createComponent(QtComicComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

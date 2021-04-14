@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
-import { Category } from 'src/app/models/category';
 import { CategoryService } from 'src/app/services/category.service';
 
 @Component({
@@ -10,30 +9,28 @@ import { CategoryService } from 'src/app/services/category.service';
 })
 export class DanhMucComponent implements OnInit {
   cateId: string = '';
-  cate: Category = new Category(0, '');
+  comics: any;
+  category: any;
+  message: string = '';
   constructor(
     private route: ActivatedRoute,
     private categoryService: CategoryService) { }
-  // ngOnInit(): void {
-  //   const heroId = this.route.snapshot.paramMap.get('id');
-  //   if (heroId) {
-  //     this.cateId = heroId
-  //     this.categoryService.findById(this.cateId).subscribe(data => {
-  //       this.cate = data
-  //     })
-  //   }
-  // }
-  async ngOnInit() {
-    this.route.params.subscribe(params => {
-      this.cateId = params.id;
-      this.categoryService.findById(this.cateId).subscribe(data => {
-        this.cate = data
-        console.log(this.cate)
-      })
-    })
 
-     
-  }
-  
+    ngOnInit(): void {
+      this.route.params.subscribe(params => {
+        this.cateId = params.id;
+        this.categoryService.findById(this.cateId).subscribe(data => {
+          this.category = data.data;
+          this.comics = this.category.comics;
+          if(!this.comics.length){
+            this.message = "Thể loại này hiện chưa có truyện!";
+          }else{
+            this.message = "";
+          }
+        })
+        
+      })
+    }
+
 
 }
