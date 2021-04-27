@@ -25,6 +25,9 @@ import { QtComicComponent } from './screen/admin/qt-comic/qt-comic.component';
 import { NewTruyentranhComponent } from './screen/admin/new-truyentranh/new-truyentranh.component';
 import { UpdateTruyentranhComponent } from './screen/admin/update-truyentranh/update-truyentranh.component';
 import { ComicDetailComponent } from './screen/comic-detail/comic-detail.component';
+import { NotFoundComponent } from './screen/not-found/not-found.component';
+
+//import { CKEditorModule } from 'ng2-ckeditor';
 @NgModule({
   declarations: [
     AppComponent,
@@ -46,8 +49,10 @@ import { ComicDetailComponent } from './screen/comic-detail/comic-detail.compone
     NewTruyentranhComponent,
     UpdateTruyentranhComponent,
     ComicDetailComponent,
+    NotFoundComponent,
   ],
   imports: [
+    //CKEditorModule, 
     HttpClientModule,
     BrowserModule,
     AppRoutingModule,

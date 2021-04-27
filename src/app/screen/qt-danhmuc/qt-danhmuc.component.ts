@@ -12,7 +12,6 @@ import { ComicService } from 'src/app/services/comic.service';
 export class QtDanhmucComponent implements OnInit {
 
 
-  cates: Category[] = [];
   cateId: string = '';
   keyword: string = "";
   dataOfCategory: Array<any> = [];
@@ -31,15 +30,20 @@ export class QtDanhmucComponent implements OnInit {
   }
 
   search(event: any) {
-    // this.keyword = event.target.value.trim();
-    // this.categoryService.searchByName(this.keyword, true).subscribe(data => {
-    //   this.cates = data;
-    // })
+    this.keyword = event.target.value.trim();
+    if(this.keyword){
+      this.categoryService.searchByName(this.keyword).subscribe(data => {
+        this.dataOfCategory = data.data;
+      })
+    }else{
+      this.categoryService.getAll().subscribe(data => {
+        this.dataOfCategory = data.data;
+      })
+    }
   }
 
   
   delete(id: Number) {
-
     if(confirm('bạn có chắc chắn xóa không?')){
       this.comicService.getAll().subscribe(data => {
         let comics = data.data;
@@ -49,11 +53,9 @@ export class QtDanhmucComponent implements OnInit {
         if(comics.length){
           comics.forEach((value: any) => {
             this.comicService.deleteComic(value.id).subscribe(data => {
-              console.log(data);
             })
           });
         }
-
       })
       this.categoryService.deleteCategory(id).subscribe(data => {
         this.dataOfCategory = this.dataOfCategory.filter((item) => {

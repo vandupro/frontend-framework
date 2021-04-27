@@ -9,7 +9,9 @@ import { CategoryService } from 'src/app/services/category.service';
   styleUrls: ['./new-danhmuc.component.css']
 })
 export class NewDanhmucComponent implements OnInit {
-
+  checkForNameInvalid = false;
+  keyword: any = '';
+  obj: any = [];
   constructor(
     private categoryService: CategoryService,
     private router: Router) { }
@@ -18,25 +20,33 @@ export class NewDanhmucComponent implements OnInit {
       Validators.required,
       Validators.minLength(4)
     ]),
-    //age: new FormControl(''),
   });
-  //name: FormControl = new FormControl();
   ngOnInit(): void {
+    this.categoryService.getAll().subscribe(data => {
+      this.obj = data.data;
+    })
   }
   get f() { return this.profileForm.controls; }
 
-  // createFormGroup() {
-  //   return new FormControl({
-  //     name: new FormControl('', [
-  //       Validators.required
-  //     ])
-  //   })
-  // }
-  onSubmit(){
-    this.categoryService.addNewCategory(this.profileForm.value).subscribe(data => {
-      if(data != undefined){
-        this.router.navigate(['/admin/danh-muc'])
-      }
+  checkName(e: any) {
+    this.keyword = e.target.value.trim().toLowerCase();
+    let arr = this.obj.filter((item: any) => {
+      return item.name.trim().toLowerCase() == this.keyword;
     })
+    if (arr.length > 0) {
+      this.checkForNameInvalid = true;
+    } else {
+      this.checkForNameInvalid = false;
+    }
+  }
+
+  onSubmit() {
+    if (!this.checkForNameInvalid) {
+      this.categoryService.addNewCategory(this.profileForm.value).subscribe(data => {
+        if (data != undefined) {
+          this.router.navigate(['/admin/danh-muc'])
+        }
+      })
+    }
   }
 }

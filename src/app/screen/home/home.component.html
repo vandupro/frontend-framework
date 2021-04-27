@@ -1,9 +1,9 @@
 <h3>DANH SÁCH TRUYỆN</h3>
 <div class="search form-group col-6">
-	<input class="form-control" type="text" placeholder="search">
+	<input class="form-control" type="text" placeholder="search" (keyup)="search($event)">
 </div>
 <div class="row">
-	<div class="col-3" *ngFor="let item of dataOfComic">
+	<div class="col-3 item" *ngFor="let item of dataOfComic">
 		<div class="col-12" >
 			<div class="card" >
 				<img style=" height: 150px;" class="card-img-top" [src]="item.image">
@@ -21,3 +21,16 @@
 		</div>
 	</div>
 </div>
+<nav aria-label="...">
+	<ul class="pagination">
+	  <li class="page-item {{current==1?'disabled':''}}">
+		<button class="page-link" (click)="paginate(current-1)"  tabindex="-1">Previous</button>
+	  </li>
+		<li *ngFor="let item of arr, index as i" class="page-item {{i+1==current ? 'active': ''}}">
+		  <button class="page-link" (click)="paginate(i+1)" >{{i+1}} <span class="sr-only">(current)</span></button>
+		</li>
+	  <li class="page-item {{current==totalPage?'disabled':''}}">
+		<button class="page-link" (click)="paginate(current+1)" >Next</button>
+	  </li>
+	</ul>
+  </nav>

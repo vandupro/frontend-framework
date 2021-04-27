@@ -12,12 +12,15 @@ export class CategoryService {
 		return this.http.get<any>(requestUrl);
 	}
 
-	// searchByName(keyword: string, embed: boolean = false): Observable<Category[]> {
-	// 	let requestUrl = `${this.API_URL}?name_like=${keyword}`;
-	// 	if (embed)
-	// 		requestUrl += `&_embed=comics`
-	// 	return this.http.get<Category[]>(requestUrl);
-	// }
+	searchByName(keyword: string): Observable<any>{
+		let requestUrl = `http://localhost:8000/api/v1/categories/search/${keyword}`;
+		return this.http.get<any>(requestUrl);
+	}
+
+	checkByName(arr: any):Observable<any>{
+		let requestUrl = `http://localhost:8000/api/v1/categories/check?keyword=${arr}`;
+		return this.http.get<any>(requestUrl);
+	}
 
 	findById(cateId: string): Observable<any> {
 		let requestUrl = `http://localhost:8000/api/v1/categories/${cateId}`;

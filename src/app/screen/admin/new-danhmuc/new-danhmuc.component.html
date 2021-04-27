@@ -3,7 +3,7 @@
         <form [formGroup]="profileForm" (ngSubmit)="onSubmit()" action="">
             <div class="form-group">
                 <label for="">Tên danh muc</label>
-                <input class="form-control" type="text" formControlName="name">
+                <input class="form-control" type="text" formControlName="name" (keyup)="checkName($event)">
             </div>
             <div *ngIf="f.name.invalid && (f.name.dirty || f.name.touched)" class="alert alert-danger">
 
@@ -13,12 +13,12 @@
                 <div *ngIf="f.name.errors?.minlength">
                     Name must be at least 4 characters long.
                 </div>
-                <!-- <div *ngIf="name.errors.forbiddenName">
-                    Name cannot be Bob.
-                </div> -->
             </div>
+            <div *ngIf="checkForNameInvalid" class="alert alert-danger">
+                Name already exits.
+              </div>
             <div class="text-center">
-                <button [disabled]="profileForm.invalid" class="btn btn-success" type="submit">Lưu</button>
+                <button [disabled]="profileForm.invalid || checkForNameInvalid" class="btn btn-success" type="submit">Lưu</button>
             </div>
         </form>
     </div>

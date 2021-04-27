@@ -16,10 +16,11 @@ export class UpdateTruyentranhComponent implements OnInit {
   downloadURL!: Observable<string>;
   comicId: string = '';
   dataEdit: any;
-  categorys: any;
+  categorys: any = '';
   authors: any;
   imageUrl: any = '';
   checked: boolean = true;
+  checkIamgeInvalid = false;
   constructor(
     private route: ActivatedRoute,
     private authorService: AuthorService,
@@ -38,19 +39,26 @@ export class UpdateTruyentranhComponent implements OnInit {
     })
     this.route.params.subscribe(params => {
       this.comicId = params.id;
+      let n = Number(this.comicId);
+      if (Number.isNaN(n)) {
+        this.router.navigate(['/not-found']);
+      }
       this.comicService.findById(this.comicId).subscribe(data => {
-        this.dataEdit = data.data;
-        this.checked = this.dataEdit.status == 1 ? true : false;
-        this.imageUrl = this.dataEdit.image;
-        //console.log(typeof this.dataEdit.status);
-        this.profileForm.patchValue({
-          name: this.dataEdit.name,
-           desc: this.dataEdit.desc,
-           cate_id: this.dataEdit.category.id,
-           author_id: this.dataEdit.author.id,
-           status: this.dataEdit.status,
-           view: this.dataEdit.view,
-        })
+        if (data.data.length == 0) {
+          this.router.navigate(['/not-found']);
+        } else {
+          this.dataEdit = data.data;
+          this.checked = this.dataEdit.status == 1 ? true : false;
+          this.imageUrl = this.dataEdit.image;
+          this.profileForm.patchValue({
+            name: this.dataEdit.name,
+            desc: this.dataEdit.desc,
+            cate_id: this.dataEdit.category.id,
+            author_id: this.dataEdit.author.id,
+            status: this.dataEdit.status,
+            view: this.dataEdit.view,
+          })
+        }
       })
     })
   }
@@ -60,42 +68,52 @@ export class UpdateTruyentranhComponent implements OnInit {
       Validators.minLength(4)
     ]),
     image: new FormControl(''),
-    desc: new FormControl('', [ Validators.required]),
+    desc: new FormControl('', [Validators.required]),
     cate_id: new FormControl('', [Validators.required]),
     author_id: new FormControl('', [Validators.required]),
     status: new FormControl(0),
     view: new FormControl(0),
   });
   get f() { return this.profileForm.controls; }
-  uploadFile(event:any){
-    var n = Date.now();
-    const file = event.target.files[0];
-    const filePath = `Comics/${n}`;
-    const fileRef = this.storage.ref(filePath);
-    const task = this.storage.upload(`Comics/${n}`, file);
-    task
-      .snapshotChanges()
-      .pipe(
-        finalize(() => {
-          this.downloadURL = fileRef.getDownloadURL();
-          this.downloadURL.subscribe(url => {
-            this.imageUrl = url;
-          });
-        })
-      )
-      .subscribe(url => {
-        if (url) {
-          console.log(url);
-        }
-      });
+  uploadFile(event: any) {
+    let typeOfImages = ['png', 'jpg', 'jpeg'];
+
+    let test = this.profileForm.value.image.split('.');
+    test = test.pop().toLowerCase();
+    if (typeOfImages.includes(test)) {
+      this.checkIamgeInvalid = false;
+
+      var n = Date.now();
+      const file = event.target.files[0];
+      const filePath = `Comics/${n}`;
+      const fileRef = this.storage.ref(filePath);
+      const task = this.storage.upload(`Comics/${n}`, file);
+      task
+        .snapshotChanges()
+        .pipe(
+          finalize(() => {
+            this.downloadURL = fileRef.getDownloadURL();
+            this.downloadURL.subscribe(url => {
+              this.imageUrl = url;
+            });
+          })
+        )
+        .subscribe(url => {
+          if (url) {
+            console.log(url);
+          }
+        });
+    } else {
+      this.checkIamgeInvalid = true;
+    }
   }
-  onSubmit(){
-    if(this.profileForm.value.image)
+  onSubmit() {
+    if (this.profileForm.value.image)
       this.profileForm.value.image = this.imageUrl;
     else
       this.profileForm.value.image = this.dataEdit.image;
     this.comicService.update(this.profileForm.value, Number(this.comicId)).subscribe(data => {
-      if(data != undefined){
+      if (data != undefined) {
         this.router.navigate(['/admin/truyen-tranh']);
       }
     })

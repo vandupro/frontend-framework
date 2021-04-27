@@ -16,15 +16,23 @@ export class UpdateDanhmucComponent implements OnInit {
     private route: ActivatedRoute,
     private categoryService: CategoryService,
     private router: Router) { }
-    
+
   ngOnInit(): void {
     this.route.params.subscribe(params => {
       this.cateId = params.id;
+      let n = Number(this.cateId);
+      if (Number.isNaN(n)) {
+        this.router.navigate(['/not-found']);
+      }
       this.categoryService.findById(this.cateId).subscribe(data => {
-        this.dataEdit = data.data;
-        this.profileForm.setValue({
-          name: this.dataEdit.name
-        })
+        if (data.data.length == 0) {
+          this.router.navigate(['/not-found']);
+        } else {
+          this.dataEdit = data.data;
+          this.profileForm.setValue({
+            name: this.dataEdit.name
+          })
+        }
       })
     })
   }
@@ -35,9 +43,9 @@ export class UpdateDanhmucComponent implements OnInit {
     ]),
   })
   get f() { return this.profileForm.controls; }
-  onSubmit(){
+  onSubmit() {
     this.categoryService.update(this.profileForm.value, Number(this.cateId)).subscribe(data => {
-      if(data != undefined){
+      if (data != undefined) {
         this.router.navigate(['/admin/danh-muc']);
       }
     })

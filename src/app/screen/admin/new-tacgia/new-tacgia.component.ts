@@ -1,3 +1,4 @@
+import { ThisReceiver } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -8,6 +9,9 @@ import { AuthorService } from 'src/app/services/author.service';
   styleUrls: ['./new-tacgia.component.css']
 })
 export class NewTacgiaComponent implements OnInit {
+  checkForNameInvalid = false;
+  keyword: any = '';
+  obj: any = [];
 
   constructor(
     private authorService: AuthorService,
@@ -15,6 +19,10 @@ export class NewTacgiaComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.authorService.getAll().subscribe(data => {
+      this.obj = data.data;
+      console.log(this.obj);
+    })
   }
   profileForm = new FormGroup({
     name: new FormControl('', [
@@ -25,11 +33,25 @@ export class NewTacgiaComponent implements OnInit {
 
   get f() { return this.profileForm.controls; }
 
-  onSubmit(){
-    this.authorService.addNewAuthor(this.profileForm.value).subscribe(data => {
-      if(data != undefined){
-        this.router.navigate(['/admin/tac-gia'])
-      }
+  checkName(e: any) {
+    this.keyword = e.target.value.trim().toLowerCase();
+    let arr = this.obj.filter((item: any) => {
+      return item.name.trim().toLowerCase() == this.keyword;
     })
+    if (arr.length > 0) {
+      this.checkForNameInvalid = true;
+    } else {
+      this.checkForNameInvalid = false;
+    }
+  }
+
+  onSubmit() {
+    if(!this.checkForNameInvalid){
+      this.authorService.addNewAuthor(this.profileForm.value).subscribe(data => {
+        if (data != undefined) {
+          this.router.navigate(['/admin/tac-gia'])
+        }
+      })
+    }
   }
 }

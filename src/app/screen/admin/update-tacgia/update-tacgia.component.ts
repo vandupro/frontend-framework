@@ -10,21 +10,29 @@ import { AuthorService } from 'src/app/services/author.service';
 export class UpdateTacgiaComponent implements OnInit {
   authorId: string = '';
   dataEdit: any;
-  constructor( 
+  constructor(
     private route: ActivatedRoute,
     private authorService: AuthorService,
     private router: Router,
-    
+
   ) { }
 
   ngOnInit(): void {
     this.route.params.subscribe(params => {
       this.authorId = params.id;
+      let n = Number(this.authorId);
+      if (Number.isNaN(n)) {
+        this.router.navigate(['/not-found']);
+      }
       this.authorService.findById(this.authorId).subscribe(data => {
-        this.dataEdit = data.data;
-        this.profileForm.setValue({
-          name: this.dataEdit.name
-        })
+        if (data.data.length == 0) {
+          this.router.navigate(['/not-found']);
+        } else {
+          this.dataEdit = data.data;
+          this.profileForm.setValue({
+            name: this.dataEdit.name
+          })
+        }
       })
     })
   }
@@ -35,9 +43,9 @@ export class UpdateTacgiaComponent implements OnInit {
     ]),
   })
   get f() { return this.profileForm.controls; }
-  onSubmit(){
+  onSubmit() {
     this.authorService.update(this.profileForm.value, Number(this.authorId)).subscribe(data => {
-      if(data != undefined){
+      if (data != undefined) {
         this.router.navigate(['/admin/tac-gia']);
       }
     })

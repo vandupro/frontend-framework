@@ -7,7 +7,7 @@
         <div class="col-md-6">
           <div class="form-group">
             <label for="">Tên Truyện</label>
-            <input class="form-control" type="text" formControlName="name">
+            <input class="form-control" type="text" formControlName="name" (keyup)="checkName($event)">
           </div>
           <div *ngIf="f.name.invalid && (f.name.dirty || f.name.touched)" class="alert alert-danger">
 
@@ -18,12 +18,17 @@
               Name must be at least 4 characters long.
             </div>
           </div>
+          <div *ngIf="checkForNameInvalid" class="alert alert-danger">
+            Name already exits.
+          </div>
+
           <div class="form-group">
             <label for="">Trạng thái</label>
             <br>
-            <input type="radio"  formControlName="status" value="1">
+            <input type="radio" formControlName="status" value="1"
+            [(ngModel)]="checkRadio">
             Hoàn thành
-            <input class="ml-3" [checked]="true" type="radio" formControlName="status" value="0">
+            <input class="ml-3"   type="radio" formControlName="status" value="0" >
             Chưa hoàn thành
           </div>
           <div class="form-group">
@@ -64,8 +69,11 @@
           <div *ngIf="f.image.invalid && (f.image.dirty || f.image.touched)" class="alert alert-danger">
 
             <div *ngIf="f.image.errors?.required">
-              Image is required.
+              Image is required!
             </div>
+          </div>
+          <div *ngIf="checkIamgeInvalid" class="alert alert-danger">
+            Types of image are jpg, png, jpeg!
           </div>
           <div class="picture">
             <img [src]="imageUrl" alt="">
@@ -83,7 +91,7 @@
         </div>
       </div>
       <div class="text-center">
-        <button [disabled]="profileForm.invalid" class="btn btn-success" type="submit">Lưu</button>
+        <button [disabled]="profileForm.invalid || checkForNameInvalid || checkIamgeInvalid" class="btn btn-success" type="submit">Lưu</button>
       </div>
     </form>
   </div>

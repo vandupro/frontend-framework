@@ -13,6 +13,16 @@ export class AuthorService {
 		return this.http.get<any>(this.API_URL);
 	}
 
+	searchByName(keyword: string): Observable<any>{
+		let requestUrl = `${this.API_URL}/search/${keyword}`;
+		return this.http.get<any>(requestUrl);
+	}
+
+	checkByName(arr: any):Observable<any>{
+		let requestUrl = `${this.API_URL}/check?keyword=${arr}`;
+		return this.http.get<any>(requestUrl);
+	}
+	
 	findById(cateId: string): Observable<any> {
 		let requestUrl = `${this.API_URL}/${cateId}`;
 		return this.http.get<any>(requestUrl);

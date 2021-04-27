@@ -16,6 +16,7 @@ import { QtComicComponent } from './screen/admin/qt-comic/qt-comic.component';
 import { NewTruyentranhComponent } from './screen/admin/new-truyentranh/new-truyentranh.component';
 import { UpdateTruyentranhComponent } from './screen/admin/update-truyentranh/update-truyentranh.component';
 import { ComicDetailComponent } from './screen/comic-detail/comic-detail.component';
+import { NotFoundComponent } from './screen/not-found/not-found.component';
 const routes: Routes = [
 	{
 		path: '',
@@ -56,18 +57,15 @@ const routes: Routes = [
 			{ path: 'truyen-tranh/tao-moi', component: NewTruyentranhComponent},
 			{ path: 'truyen-tranh/update/:id', component: UpdateTruyentranhComponent},
 
-
-
 			{
 				path: 'upload-file',
 				component: UploadFileComponent
 			}
-
-			
-
-
 		]
 	},
+	// 404 not found
+	{ path: 'not-found', component: NotFoundComponent },
+
 	{ path: '**', redirectTo: '', pathMatch: 'full' }
 
 
